@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'mileszs/ack.vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 let mapleader = ','
