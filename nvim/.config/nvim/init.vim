@@ -1,3 +1,29 @@
+"https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+" https://github.com/neoclide/coc.nvim
+" coc nvim requires node to work
+" brew install node
+"
+" https://github.com/elixir-lsp/coc-elixir
+" in order to make elixir-ls work make sure to run:
+" :CocInstall coc-elixir
+
+
+" https://www.nerdfonts.com/font-downloads
+" recommend font: Hack Nerd Font https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+"
+" ripgrep
+" https://github.com/BurntSushi/ripgrep#installation
+" brew install ripgrep
+
+
 call plug#begin('~/.vim/bundle')
 Plug 'elixir-editors/vim-elixir'
 Plug 'NLKNguyen/papercolor-theme'
@@ -13,9 +39,13 @@ Plug 'tpope/vim-repeat'
 Plug 'terryma/vim-expand-region'
 Plug 'mileszs/ack.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let mapleader = ','
+
+nnoremap <Leader>cf :let @+=expand("%")<CR>
 
 " many things here were taken from https://spf13.com/
 
@@ -46,7 +76,7 @@ nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
 
 " terryma/vim-expand-region {
-map <CR> <Plug>(expand_region_expand)
+"map <CR> <Plug>(expand_region_expand)
 map <\> <Plug>(expand_region_shrink)
 "
 "https://github.com/elixir-lsp/elixir-ls/issues/534
@@ -89,6 +119,7 @@ let g:airline_theme='papercolor'
 map <C-e> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
+let g:NERDTreeQuitOnOpen = 1
 " }
 
 
@@ -166,3 +197,10 @@ vnoremap . :normal .<CR>
 map zl zL
 map zh zH
 
+let g:ctrlp_max_files=1000000
+let g:ctrlp_custom_ignore='.git$\|_build\|doc|tmp'
+
+cmap WQ wq
+cmap Wq wq
+cmap W w
+cmap Q q
